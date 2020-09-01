@@ -96,10 +96,14 @@ describe("Callbacks, Promises, and Aysnc/Await", () => {
      */
 
     try {
-      let { title } = await movies.findOne({
-        title: "Once Upon a Time in Mexico",
-      })
-      let { cast } = await movies.findOne({
+      // let { title } = await movies.findOne({
+      //   title: "Once Upon a Time in Mexico",
+      // })
+      // let { cast } = await movies.findOne({
+      //   title: "Once Upon a Time in Mexico",
+      // })
+      
+      let { title, cast } = await movies.findOne({
         title: "Once Upon a Time in Mexico",
       })
       expect(title).toBe("Once Upon a Time in Mexico")

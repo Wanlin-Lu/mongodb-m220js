@@ -1,7 +1,7 @@
 describe("Basic Reads", () => {
   /**
    * In this lesson, we'll discuss how to perform query operations in MongoDB,
-   * the "R" in Create, Read, Update, Delete - or CRUD.
+   * ! the "R" in Create, Read, Update, Delete - or CRUD.
    *
    * The first method we'll talk about is findOne. As the name suggests, findOne
    * finds one document for us and returns it.
@@ -59,7 +59,7 @@ describe("Basic Reads", () => {
   // Looking at the document, we can see there is a lot of information.
   // What if we only wanted the title and year? You may be familiar with
   // projection mechanics in the mongo shell, where we might do something like
-  //
+  // 
   // db.movies.findOne({cast: "Salma Hayek"}, { title: 1, year: 1 })
   //
   // The Collection class also has projection functionality, but the usage is
@@ -78,7 +78,7 @@ describe("Basic Reads", () => {
     expect(result).not.toBeNull()
 
     // and based on the projection we except the object to have 3 keys,
-    // title, year, and _id
+    // ! title, year, and _id
     expect(Object.keys(result).length).toBe(3)
 
     console.log(result)
@@ -116,6 +116,9 @@ describe("Basic Reads", () => {
     // With the Node driver, it will look as follows.
 
     let result = await movies.find({
+      /**
+       * !$all 
+       */ 
       cast: { $all: ["Salma Hayek", "Johnny Depp"] },
     })
     // very similar!
