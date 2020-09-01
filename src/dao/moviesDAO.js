@@ -53,6 +53,11 @@ export default class MoviesDAO {
     Remember that in MongoDB, the $in operator can be used with a list to
     match one or more values of a specific field.
     */
+    
+    /**
+     * ! $in operator can be used with a list to match one or 
+     * ! more values of a specific field
+     */
 
     let cursor
     try {
@@ -61,7 +66,12 @@ export default class MoviesDAO {
       // and _id. Do not put a limit in your own implementation, the limit
       // here is only included to avoid sending 46000 documents down the
       // wire.
-      cursor = await movies.find().limit(1)
+
+      /**
+       * !self solution
+       * cursor = await movies.find({countries:{$in:countries}},{projection:{title:1}})
+       */
+      cursor = await movies.find({ countries: { $in: countries } }).project({title:1})
     } catch (e) {
       console.error(`Unable to issue find command, ${e}`)
       return []
@@ -116,7 +126,8 @@ export default class MoviesDAO {
 
     // TODO Ticket: Text and Subfield Search
     // Construct a query that will search for the chosen genre.
-    const query = {}
+    // ! genres not genre
+    const query = {genres:{$in:searchGenre}}
     const project = {}
     const sort = DEFAULT_SORT
 
@@ -225,6 +236,9 @@ export default class MoviesDAO {
     page = 0,
     moviesPerPage = 20,
   } = {}) {
+    /**
+     * ! queryParams take text/cast/genre-SearchQuery() result
+     */
     let queryParams = {}
     if (filters) {
       if ("text" in filters) {
