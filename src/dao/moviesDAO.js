@@ -236,6 +236,9 @@ export default class MoviesDAO {
     page = 0,
     moviesPerPage = 20,
   } = {}) {
+    /**
+     * ! queryParams take text/cast/genre-SearchQuery() result
+     */
     let queryParams = {}
     if (filters) {
       if ("text" in filters) {
