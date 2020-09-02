@@ -69,7 +69,7 @@ export default class UsersDAO {
        * await users.insertOne({ name, email, password } )
        */
       // ! solution from course
-      await users.insertOne({ ...userInfo })
+      await users.insertOne({ ...userInfo },{w:"majority"})
       return { success: true }
     } catch (e) {
       if (String(e).startsWith("MongoError: E11000 duplicate key error")) {
