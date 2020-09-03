@@ -78,6 +78,7 @@ describe("Basic Deletes", () => {
     let countDocumentsBefore = await videoGames.count({})
 
     // We will then delete a document without specifying any query predicates using deleteOne()
+    // ! deleteOne without specifying any query
     let deleteDocument = await videoGames.deleteOne({})
 
     // To check that our delete was successful, we can check that result.n is
@@ -118,6 +119,7 @@ describe("Basic Deletes", () => {
      * particular year.
      */
 
+    // ! deleteOne With specific query
     let deleteDocument = await videoGames.deleteOne({ year: 2008 })
 
     // To check that our delete was successful, we'll check the result.n object.
@@ -144,6 +146,7 @@ describe("Basic Deletes", () => {
     // Now let's try to delete multiple documents using deleteMany().
     // To do this, we will need to specify a filter for the delete statement
     // that will match multiple documents.
+    // ! deleteMany need to specify a filter query
     let deleteManyDocs = await videoGames.deleteMany({ year: { $lt: 1993 } })
 
     // This will delete all documents that have a year before 1993.
