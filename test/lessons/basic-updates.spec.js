@@ -57,6 +57,7 @@ describe("Basic Updates", () => {
     ])
 
     // update a single theater document in this collection
+    // !updateOne()
     const updateOneResult = await theaters.updateOne(
       { theaterId: 8 },
       {
@@ -131,6 +132,7 @@ describe("Basic Updates", () => {
     })
 
     // same query predicate as the find() statement above
+    // !updateMany()
     const updateManyResult = await theaters.updateMany(
       { "location.address.zipcode": "55111" },
       { $set: { "location.address.city": "Bloomington" } },
@@ -196,6 +198,7 @@ describe("Basic Updates", () => {
       },
     }
 
+    //! update with "{upsert:true}"
     const upsertResult = await theaters.updateOne(
       {
         "location.address": newTheaterDoc.location.address,
