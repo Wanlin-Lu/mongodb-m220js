@@ -28,7 +28,7 @@ describe("Basic Writes", () => {
     let insertResult = await videoGames.insertOne({
       title: "Fortnite",
       year: 2018,
-    })
+    })// !insertOne()
     // when we insert a document, we get an insertOneWriteOpResult
     // one of its properties is result. n is the total documents inserted
     // and ok means the database responded that the command executed correctly
@@ -89,6 +89,7 @@ describe("Basic Writes", () => {
     }))
 
     // now let's insert these into the database
+    // !insertMany()
     let insertResult = await videoGames.insertMany(docs)
 
     // just like insertOne, we'll get a result object back that has information
@@ -133,6 +134,7 @@ describe("Basic Writes", () => {
     console.log(upsertResult.result.upserted)
 
     // what if the document existed?
+    // ! updateOne({},{},{upsert:true})
     upsertResult = await videoGames.updateOne(
       { title: "Call of Duty" },
       // we'll update the year to 2018

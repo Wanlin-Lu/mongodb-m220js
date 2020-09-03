@@ -38,7 +38,7 @@ describe("Cursor Methods and Aggregation Equivalents", () => {
      */
     const limitedCursor = movies
       .find({ directors: "Sam Raimi" }, { _id: 0, title: 1, cast: 1 })
-      .limit(2)
+      .limit(2) //! .limit(2)
 
     // expect this cursor to contain exactly 2 results
     expect((await limitedCursor.toArray()).length).toEqual(2)
@@ -54,7 +54,7 @@ describe("Cursor Methods and Aggregation Equivalents", () => {
     const limitPipeline = [
       { $match: { directors: "Sam Raimi" } },
       { $project: { _id: 0, title: 1, cast: 1 } },
-      { $limit: 2 },
+      { $limit: 2 }, //! {$limit:2}
     ]
 
     const limitedAggregation = await movies.aggregate(limitPipeline)
@@ -78,7 +78,7 @@ describe("Cursor Methods and Aggregation Equivalents", () => {
      */
     const sortedCursor = movies
       .find({ directors: "Sam Raimi" }, { _id: 0, year: 1, title: 1, cast: 1 })
-      .sort([["year", 1]])
+      .sort([["year", 1]]) //! .sort([["year",1]])
 
     const movieArray = await sortedCursor.toArray()
 
@@ -102,7 +102,7 @@ describe("Cursor Methods and Aggregation Equivalents", () => {
     const sortPipeline = [
       { $match: { directors: "Sam Raimi" } },
       { $project: { _id: 0, year: 1, title: 1, cast: 1 } },
-      { $sort: { year: 1 } },
+      { $sort: { year: 1 } }, //! {$sort: {year:1}}
     ]
 
     const sortAggregation = await movies.aggregate(sortPipeline)
@@ -133,7 +133,7 @@ describe("Cursor Methods and Aggregation Equivalents", () => {
     const skippedCursor = movies
       .find({ directors: "Sam Raimi" }, { _id: 0, year: 1, title: 1, cast: 1 })
       .sort([["year", 1]])
-      .skip(5)
+      .skip(5) //! .skip(5)
 
     const regularCursor = movies
       .find({ directors: "Sam Raimi" }, { _id: 0, year: 1, title: 1, cast: 1 })
@@ -158,7 +158,7 @@ describe("Cursor Methods and Aggregation Equivalents", () => {
       { $match: { directors: "Sam Raimi" } },
       { $project: { _id: 0, year: 1, title: 1, cast: 1 } },
       { $sort: { year: 1 } },
-      { $skip: 5 },
+      { $skip: 5 }, //! {$skip: 5}
     ]
 
     const regularPipeline = [
