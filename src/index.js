@@ -21,7 +21,7 @@ concern timeout limit to 2500 milliseconds.
 */
 
 MongoClient.connect(
-  process.env.MFLIX_DB_URI,
+  process.env.MFLIX_DB_URI, // ! now, the user and password are specified to db:sample_mflix
   // TODO: Connection Pooling
   // Set the poolSize to 50 connections.
   // TODO: Timeouts
