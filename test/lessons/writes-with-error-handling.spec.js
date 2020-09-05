@@ -105,7 +105,7 @@ describe("Error Handling", () => {
         {
           _id: 6,
         },
-        { wtimeoutMS: 1 },
+        { wtimeoutMS: 1 }, //! never seen this kind setting.
       )
     } catch (e) {
       expect(e).toBeUndefined()
